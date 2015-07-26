@@ -16,4 +16,14 @@ As it is, the software needs FSL (5.0) previously installed on your machine. Ple
 If you do not have FSL installed, you can download the 5.0 version directly from [http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation]. 
 To know more about FSL, see [http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/].
 
+## How to use
+
+Simply download this repository and run the script phantom-build.sh
+Note: Make sure that the .sh files have permission to execute. (If not, run chmod a+x <script> to allow the exectution).
+
+## Problems and Bugs?
+
+If you have any problem with this script, please contact me!
+acsenrafilho@gmail.com
+
 
