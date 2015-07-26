@@ -14,8 +14,6 @@ NUMBER_ECHOES=12 	#Number of echos 		(default: 12)
 #Change wisely the parameters above to build your own relaxometry volumes
 ####################################################################
 
-
-
 echo "-- Starting phantom reconstruction --"
 echo "#############################################"
 echo "Configuration set:"
@@ -26,6 +24,7 @@ echo "White Matter ${R_TYPE}                 = ${WM_VALUE}"
 echo "CSF Matter ${R_TYPE}                   = ${CSF_VALUE}"
 echo "Number of echos                        = ${NUMBER_ECHOES}"
 echo "#############################################"
+
 echo "Step 1: Volumes segmentation"
 ./scripts/phantom_segmentation.sh $n $rf $R_TYPE
 echo "*** Step 1: Done ***"
