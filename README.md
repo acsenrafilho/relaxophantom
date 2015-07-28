@@ -19,11 +19,10 @@ To know more about FSL, see [http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/].
 ## How to use
 
 Simply download this repository and run the script phantom-build.sh
-Note: Make sure that the .sh files have permission to execute. (If not, run chmod a+x <script> to allow the exectution).
+Note: Make sure that the .sh files have permission to execute. (If not, run chmod a+x 'script' to allow the exectution).
 
-## Problems and Bugs?
+## Problems, Bugs and Suggestions
 
-If you have any problem with this script, please contact me!
-acsenrafilho@gmail.com
+If you have any problem with this script, please contact me: acsenrafilho@gmail.com
 
 

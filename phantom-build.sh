@@ -33,4 +33,8 @@ echo "Step 2: Phantom reconstruction"
 ./scripts/phantom_recon.sh $n $rf $GM_VALUE $WM_VALUE $CSF_VALUE $R_TYPE $NUMBER_ECHOES
 echo "*** Step 2: Done ***"
 
+echo "Step 3: Reformating relaxometry volumes"
+./scripts/phantom_reformat.sh ${n} ${rf} ${NUMBER_ECHOES} ${R_TYPE}
+echo "*** Step 3: Done ***"
+
 echo "The results are located in the folder ./relaxo"

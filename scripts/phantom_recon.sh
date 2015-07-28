@@ -49,6 +49,11 @@ do
 echo "--> Merging Gray Matter, White Matter and CSF volumes"
 fsl5.0-fslmaths temp/${brainPhantom}_GM_t_$t.nii.gz -add temp/${brainPhantom}_WM_t_$t.nii.gz temp/temp_GMpWM_t$t.nii.gz
 echo "Done"
+
+if [ ! -d ../../../relaxo ]; then
+  mkdir ../../../relaxo
+fi
+
 echo "--> Creating final volume reconstruction from echo t=$t (GM=$GM_VALUE; WM=$WM_VALUE; CSF=$CSF_VALUE)"
 fsl5.0-fslmaths temp/temp_GMpWM_t$t.nii.gz -add temp/${brainPhantom}_CSF_t_$t.nii.gz temp/temp_GMpWMpWM_t$t.nii.gz
 mv temp/temp_GMpWMpWM_t$t.nii.gz ../../../relaxo/${R_TYPE}_n${n}_rf${rf}_t_$t.nii.gz
