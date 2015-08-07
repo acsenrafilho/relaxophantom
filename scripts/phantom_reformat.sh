@@ -3,11 +3,18 @@
 n=$1			
 rf=$2			
 NUMBER_ECHOES=$3 	
-R_TYPE=$4		
+R_TYPE=$4
+TE=$5		
+
+#Calculating the echo time for each TE
+for ((te=1; te<=$NUMBER_ECHOES; te++))
+do
+time[${te}]=`echo "scale=4; ${te}*(${TE})" | bc -l`
+done
 
 for ((t=1; t<=${NUMBER_ECHOES}; t++))
 do
-echo "Unpacking t = ${t}"
+echo "Unpacking t = ${time[$t]}"
 mkdir relaxo/${R_TYPE}_n${n}_rf${rf}_t_${t}/
 fsl5.0-fslslice relaxo/${R_TYPE}_n${n}_rf${rf}_t_${t}.nii.gz relaxo/${R_TYPE}_n${n}_rf${rf}_t_${t}/${R_TYPE}_n${n}_rf${rf}_t_${t}
 done
@@ -28,7 +35,6 @@ do
 	fi	
 	done
 echo "--> Creating relaxometry time evolution for slice $slice"
-#mkdir relaxo/MNISlice$slice
 	if [ $slice -lt 10 ]; then
 	fsl5.0-fslmerge -z ./relaxo/MNI152_${R_TYPE}_n${n}_rf${rf}_slice_000${slice} ${time_t[*]} 
 	elif [ $slice -lt 100 ] && [ $slice -ge 10 ]; then
