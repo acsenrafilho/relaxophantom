@@ -2,12 +2,12 @@
 
 ## Description
 
-This software aims to reconstruct brain relaxometry for T2 and T1 phantom images. All the process is based on previously reconstructed brain phantoms by BrainWeb (Montreal Neurological Institute).
+This software aims to reconstruct brain relaxometry for T2 phantom images. All the process is based on previously reconstructed brain phantoms by BrainWeb (Montreal Neurological Institute) project. See the {McGill Neuroscience Institute,http://brainweb.bic.mni.mcgill.ca/} website to found out more information about the BrainWeb phantoms.
 
-The version currently avaliable is relaxophantom-v1.0, where it is already done:
+The version of Relaxo Phantom toolkit currently avaliable is relaxophantom-v1.0.1, where it is already done:
 
 * Relaxometry for T2 images with different noise levels and RF distortions (please see the script phantom-build.sh for more details)
-* Only phantom with 1 mm of spatial resolution is avaliable
+* Only phantom with 1 mm3 of spatial resolution is avaliable
 
 ## Requirements
 
