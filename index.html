@@ -25,38 +25,47 @@
 <h2>
 <a id="description" class="anchor" href="#description" aria-hidden="true"><span class="octicon octicon-link"></span></a>Description</h2>
 
-<p>This software aims to reconstruct brain relaxometry for T2 phantom images. All the process is based on previously reconstructed brain phantoms by BrainWeb (Montreal Neurological Institute) project. See the McGill Neuroscience Institute (<a href="http://brainweb.bic.mni.mcgill.ca/">http://brainweb.bic.mni.mcgill.ca/</a>) website to found out more information about the BrainWeb phantoms.</p>
+<p>This software aims to reconstruct brain relaxometry for T2 (and also for T1 in a near future) phantom images. All the process is based on previously reconstructed brain phantoms by BrainWeb (Montreal Neurological Institute) project. See the McGill Neuroscience Institute (<a href="http://brainweb.bic.mni.mcgill.ca/">http://brainweb.bic.mni.mcgill.ca/</a>) website to found out more information about the BrainWeb phantoms.</p>
 
-<p>The version of Relaxo Phantom toolkit currently avaliable is relaxophantom-v1.0.1, where it is already done:</p>
+<p>The version of Relaxo Phantom toolkit currently avaliable is relaxophantom-v1.0.1, which provides:</p>
 
 <ul>
-<li>Relaxometry for T2 images with different noise levels and RF distortions (please see the script phantom-build.sh for more details)</li>
-<li>Only phantom with 1 mm3 of spatial resolution is avaliable</li>
+<li>Relaxometry dataset for T2 images with different noise levels and RF distortions (please see the script phantom-build.sh for more details)</li>
+<li>Only phantom with 1 mm^3 of spatial resolution is avaliable</li>
 </ul>
+
+<p>To see how the image dataset is created, please download a <a href="https://github.com/acsenrafilho/relaxophantom/raw/gh-pages/images/MNI152_T2_n3_rf20_slice_0081.nii">relaxometry sample</a>. At this particular example, the slice selected is at the middle brain portion in slice 81 MNI152. All the 180 slices in the MNI152 is reconstructed in Relaxophantom.   </p>
 
 <h2>
 <a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Requirements</h2>
 
-<p>As it is, the software needs FSL (5.0) previously installed on your machine. Please, be sure that FSL are installed and exist a enviroment variable called fsl5.0 in your system.</p>
+<p>As it is, the software needs FSL (5.0) previously installed on your machine. Please, be sure that FSL are installed and exist a environment variable called fsl5.0 in your system.</p>
 
-<p>To check if exist a link for fsl in your machine type "whereis fsl5.0" in a terminal.</p>
+<p>To check if exist a link for fsl in your machine type</p>
 
-<p>If you do not have FSL installed, you can download the 5.0 version directly from  <a href="http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation">http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation</a>. 
-To know more about FSL, see more information about it <a href="http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/">here</a>.</p>
+<p><code>whereis fsl5.0</code></p>
 
-<p>This program have a GNU licence, but check first the FSL licence before use it for other purposes. We not have any responsibility for any problem or bad function of the code.</p>
+<p>in a terminal and certificate that FSL 5.0 is already installed in your machine.</p>
+
+<p>If you do not have FSL installed, you can download the 5.0 version directly from <a href="http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation">official FSL website</a>. To know more about FSL, see more information about it <a href="http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/">here</a>.</p>
+
+<p>The FSL software have a GNU licence, but check the licence first before use it for other purposes. We not have any responsibility for any problem or bad functioning of the code.</p>
 
 <h2>
 <a id="how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to use</h2>
 
-<p>Simply download this repository and run the script phantom-build.sh. If you want to change the parameters in order to create different simulated brain objects, you can change it in the header section in the phantom-build.sh file. Please, choose those parameters wisely.</p>
+<p>Simply download this repository (.zip or .tar.gz compress files) and run the script phantom-build.sh. If you want to change the parameters in order to create a different simulated brain objects, you can change it in the header section in the phantom-build.sh file. Please, choose those parameters wisely.</p>
 
-<p>Note: Make sure that the .sh files have permission to execute. (If not, run chmod a+x 'script' to allow the exectution).</p>
+<p><strong>Note</strong>: Make sure that the <em>.sh</em> files have permission to execute. If not, run </p>
+
+<p><code>chmod a+x &lt;script file&gt;</code> </p>
+
+<p>to allow the exectution</p>
 
 <h2>
 <a id="problems-bugs-and-suggestions" class="anchor" href="#problems-bugs-and-suggestions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Problems, Bugs and Suggestions</h2>
 
-<p>This project is maintained by <a href="https://github.com/acsenrafilho" class="user-mention">@acsenrafilho</a> and if you have any problem, bug or suggestion, please contact me by my <a href="mailto:acsenrafilho@gmail.com">email address</a></p>
+<p>This project is maintained by <a href="https://github.com/acsenrafilho" class="user-mention">@acsenrafilho</a> and if you have any problem, bug or suggestion, please contact me by my <a href="mailto:acsenrafilho@gmail.com">email address</a>. This project is freely available to download and use and if you want propose modification in the code, please fork it on <a href="https://github.com/acsenrafilho/relaxophantom">GitHub repository</a>!</p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/acsenrafilho/relaxophantom">Relaxophantom</a> is maintained by <a href="https://github.com/acsenrafilho">acsenrafilho</a>.</span>
