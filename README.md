@@ -2,7 +2,7 @@
 
 ## Description
 
-This software aims to reconstruct brain relaxometry for T1 and T2 phantom images based on a well structured anatomical brain model (MNI152). Please see the Reference section to correctly cite the project. 
+This software aims to reconstruct brain relaxometry for T1 and T2 phantom images based on a well structured anatomical brain model (MNI152). Please see the Reference section to correctly cite the project.
 
 Remember that this is an open-source project under GNU license. Your are free to download, use, share and develop with other people. If any trouble occur in the reconstruction process, please send me [an email](mailto:acsenrafilho@gmail.com)   
 
@@ -18,7 +18,3 @@ More details about this repository is found in the website:
 <http://acsenrafilho.github.io/relaxophantom>
 
 # Reference 
-
-
-
-
