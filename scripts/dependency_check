@@ -1,0 +1,20 @@
+#!/bin/bash
+# Script to check the dependency programs needed to use the templateCreator
+
+FSLVERSION=0
+
+if [[ `which fsl` == "" ]]; then
+  FSLVERSION=1
+fi
+
+#Show list of dependecy
+if [[ $FSLVERSION -eq 1 ]]; then
+  echo "relaxophantom need some programs to work properly. Please provide a previous installation of the programs listed below:"
+  if [[ $FSLVERSION -eq 1 || $FSLEDDY -eq 1 ]]; then
+    echo "  -> FSL is missing! Please intall FSL packages before using this script."
+    echo "  More information in the website: http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/"
+    echo ""
+  fi
+  echo "relaxophantom terminated. (I'll be back!)"
+  exit
+fi

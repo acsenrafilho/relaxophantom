@@ -2,8 +2,8 @@
 ####################################################################
 #Configuration Set:
 #--> Basic default phantom parameters
-n=0			#Noise level [0,3,9]		(default: 0)
-rf=0			#RF field distortion [0,20,40] 	(default: 0)
+n=3			#Noise level [0,3,9]		(default: 0)
+rf=20			#RF field distortion [0,20,40] 	(default: 0)
 GM_VALUE=80		#Gray Matter (ms) 		(default: 80)
 WM_VALUE=112		#White Matter (ms) 		(default: 112)
 CSF_VALUE=200		#CSF (ms) 			(default: 200)
@@ -16,28 +16,83 @@ TE=0.012 		#Time of echo (seconds) 	(default: 0.012)
 
 #n=${1:-$def_n}
 
-echo "-- Starting phantom reconstruction --"
-echo "#############################################"
-echo "Configuration set:"
-echo "Noise level                            = ${n}"
-echo "RF field distortion                    = ${rf}"
-echo "Gray Matter ${R_TYPE}                         = ${GM_VALUE}"
-echo "White Matter ${R_TYPE}                        = ${WM_VALUE}"
-echo "CSF Matter ${R_TYPE}                          = ${CSF_VALUE}"
-echo "Number of echos                        = ${NUMBER_ECHOES}"
-echo "Time of echo                           = ${TE}"
-echo "#############################################"
+# Check the softwares dependency
+source scripts/dependency_check
 
-echo "Step 1: Volumes segmentation"
-./scripts/phantom_segmentation.sh $n $rf $R_TYPE
-echo "*** Step 1: Done ***"
+OUTPUT_FOLDER=$1
+#Check if the output folder selected exist
+if [[ ! "`echo $OUTPUT_FOLDER`" == "" ]]; then
+  if [[ ! -e $OUTPUT_FOLDER ]]; then
+    echo "ERROR: The path for the output data do not exist!"
+    echo "  Is it correct? $OUTPUT_FOLDER"
+    exit
+  fi
+fi
 
-echo "Step 2: Phantom reconstruction"
-./scripts/phantom_recon.sh $n $rf $GM_VALUE $WM_VALUE $CSF_VALUE $R_TYPE $NUMBER_ECHOES $TE
-echo "*** Step 2: Done ***"
+if [[ "`echo $OUTPUT_FOLDER`" == "" ]]; then
+  echo "-- Starting phantom reconstruction --"
+  echo "#############################################"
+  echo "Configuration set:"
+  echo "Noise level                            = ${n}"
+  echo "RF field distortion                    = ${rf}"
+  echo "Gray Matter ${R_TYPE}                         = ${GM_VALUE}"
+  echo "White Matter ${R_TYPE}                        = ${WM_VALUE}"
+  echo "CSF Matter ${R_TYPE}                          = ${CSF_VALUE}"
+  echo "Number of echos                        = ${NUMBER_ECHOES}"
+  echo "Time of echo                           = ${TE}"
+  echo "Output folder                          = relaxophantom/relaxo/"
+  echo "#############################################"
 
-echo "Step 3: Reformating relaxometry volumes"
-./scripts/phantom_reformat.sh ${n} ${rf} ${NUMBER_ECHOES} ${R_TYPE} ${TE}
-echo "*** Step 3: Done ***"
+  echo "Step 1: Volumes segmentation"
+  ./scripts/phantom_segmentation.sh $n $rf $R_TYPE
+  echo "*** Step 1: Done ***"
 
-echo "The results are located in the folder ./relaxo"
+  echo "Step 2: Phantom reconstruction"
+  ./scripts/phantom_recon.sh $n $rf $GM_VALUE $WM_VALUE $CSF_VALUE $R_TYPE $NUMBER_ECHOES $TE
+  echo "*** Step 2: Done ***"
+
+  echo "Step 3: Reformating relaxometry volumes"
+  ./scripts/phantom_reformat.sh ${n} ${rf} ${NUMBER_ECHOES} ${R_TYPE} ${TE}
+  echo "*** Step 3: Done ***"
+
+  # Removing empy relaxometry image Volumes
+  for (( vol=156; vol<=181; vol++)); do
+    rm `ls ${PWD}/relaxo/*0${vol}*`
+  done
+
+  echo "The results are located in the folder ./relaxo"
+else
+  echo "-- Starting phantom reconstruction --"
+  echo "#############################################"
+  echo "Configuration set:"
+  echo "Noise level                            = ${n}"
+  echo "RF field distortion                    = ${rf}"
+  echo "Gray Matter ${R_TYPE}                         = ${GM_VALUE}"
+  echo "White Matter ${R_TYPE}                        = ${WM_VALUE}"
+  echo "CSF Matter ${R_TYPE}                          = ${CSF_VALUE}"
+  echo "Number of echos                        = ${NUMBER_ECHOES}"
+  echo "Time of echo                           = ${TE}"
+  echo "Output folder                          = $OUTPUT_FOLDER"
+  echo "#############################################"
+
+  echo "Step 1: Volumes segmentation"
+  ./scripts/phantom_segmentation.sh $n $rf $R_TYPE
+  echo "*** Step 1: Done ***"
+
+  echo "Step 2: Phantom reconstruction"
+  ./scripts/phantom_recon.sh $n $rf $GM_VALUE $WM_VALUE $CSF_VALUE $R_TYPE $NUMBER_ECHOES $TE
+  echo "*** Step 2: Done ***"
+
+  echo "Step 3: Reformating relaxometry volumes"
+  ./scripts/phantom_reformat.sh ${n} ${rf} ${NUMBER_ECHOES} ${R_TYPE} ${TE}
+  echo "*** Step 3: Done ***"
+
+  #Changing output folder
+  mv relaxo/ $OUTPUT_FOLDER
+
+  # Removing empy relaxometry image Volumes
+  for (( vol=153; vol<=181; vol++)); do
+    rm `ls $OUTPUT_FOLDER/relaxo/*0${vol}*`
+  done
+  echo "The results are located in the folder $OUTPUT_FOLDER"
+fi

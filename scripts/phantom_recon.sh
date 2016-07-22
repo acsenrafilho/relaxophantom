@@ -14,7 +14,7 @@ echo "Building relaxometry maps"
 echo "Step 1: Crop partial volumes"
 echo "--- Partial Volume: White Matter ---"
 cd data/${R_TYPE}/n${n}_rf${rf}
-fsl5.0-fslmaths ${brainPhantom}.nii -mul temp/${brainPhantom}_pve_0.nii.gz temp/${brainPhantom}_WM.nii.gz
+fslmaths ${brainPhantom}.nii -mul temp/${brainPhantom}_pve_0.nii.gz temp/${brainPhantom}_WM.nii.gz
 
 #Calculating the echo time for each TE
 for ((te=1; te<=$NUMBER_ECHOES; te++))
@@ -23,30 +23,30 @@ t[${te}]=`echo "scale=4; ${te}*(${TE})" | bc -l`
 done
 
 for ((t=1; t<=$NUMBER_ECHOES; t++))
-	do	
+	do
 	echo "-> Calculating echo time t = ${t[$t]}"
 	EXP_WM=`echo "scale=6; e(-(${t[$t]})/(${WM_VALUE}/1000))" | bc -l`
-	fsl5.0-fslmaths temp/${brainPhantom}_WM.nii.gz -mul $EXP_WM temp/${brainPhantom}_WM_t_$t.nii.gz
+	fslmaths temp/${brainPhantom}_WM.nii.gz -mul $EXP_WM temp/${brainPhantom}_WM_t_$t.nii.gz
 done
 
 echo "--- Partial Volume: Gray Matter ---"
-fsl5.0-fslmaths ${brainPhantom}.nii -mul temp/${brainPhantom}_pve_1.nii.gz temp/${brainPhantom}_GM.nii.gz
+fslmaths ${brainPhantom}.nii -mul temp/${brainPhantom}_pve_1.nii.gz temp/${brainPhantom}_GM.nii.gz
 
 for ((t=1; t<=$NUMBER_ECHOES; t++))
-	do	
+	do
 	echo "-> Calculating echo time t = ${t[$t]}"
-	EXP_GM=`echo "scale=6; e(-(${t[$t]})/(${GM_VALUE}/1000))" | bc -l`	
-	fsl5.0-fslmaths temp/${brainPhantom}_GM.nii.gz -mul $EXP_GM temp/${brainPhantom}_GM_t_$t.nii.gz
+	EXP_GM=`echo "scale=6; e(-(${t[$t]})/(${GM_VALUE}/1000))" | bc -l`
+	fslmaths temp/${brainPhantom}_GM.nii.gz -mul $EXP_GM temp/${brainPhantom}_GM_t_$t.nii.gz
 done
 
 echo "--- Partial Volume: CSF ---"
-fsl5.0-fslmaths ${brainPhantom}.nii -mul temp/${brainPhantom}_pve_2.nii.gz temp/${brainPhantom}_CSF.nii.gz
+fslmaths ${brainPhantom}.nii -mul temp/${brainPhantom}_pve_2.nii.gz temp/${brainPhantom}_CSF.nii.gz
 
 for ((t=1; t<=$NUMBER_ECHOES; t++))
-	do	
+	do
 	echo "-> Calculating echo time t = ${t[$t]}"
-	EXP_CSF=`echo "scale=6; e(-(${t[$t]})/(${CSF_VALUE}/1000))" | bc -l`	
-	fsl5.0-fslmaths temp/${brainPhantom}_CSF.nii.gz -mul $EXP_CSF temp/${brainPhantom}_CSF_t_$t.nii.gz
+	EXP_CSF=`echo "scale=6; e(-(${t[$t]})/(${CSF_VALUE}/1000))" | bc -l`
+	fslmaths temp/${brainPhantom}_CSF.nii.gz -mul $EXP_CSF temp/${brainPhantom}_CSF_t_$t.nii.gz
 done
 
 echo "Step 2: Reconstructing each echo time from WM, GM and CSF volumes"
@@ -54,7 +54,7 @@ echo "Step 2: Reconstructing each echo time from WM, GM and CSF volumes"
 for ((t=1; t<=$NUMBER_ECHOES; t++))
 do
 echo "--> Merging Gray Matter, White Matter and CSF volumes"
-fsl5.0-fslmaths temp/${brainPhantom}_GM_t_$t.nii.gz -add temp/${brainPhantom}_WM_t_$t.nii.gz temp/temp_GMpWM_t$t.nii.gz
+fslmaths temp/${brainPhantom}_GM_t_$t.nii.gz -add temp/${brainPhantom}_WM_t_$t.nii.gz temp/temp_GMpWM_t$t.nii.gz
 echo "Done"
 
 if [ ! -d ../../../relaxo ]; then
@@ -62,7 +62,7 @@ if [ ! -d ../../../relaxo ]; then
 fi
 
 echo "--> Creating final volume reconstruction from echo t=$t (GM=$GM_VALUE; WM=$WM_VALUE; CSF=$CSF_VALUE)"
-fsl5.0-fslmaths temp/temp_GMpWM_t$t.nii.gz -add temp/${brainPhantom}_CSF_t_$t.nii.gz temp/temp_GMpWMpWM_t$t.nii.gz
+fslmaths temp/temp_GMpWM_t$t.nii.gz -add temp/${brainPhantom}_CSF_t_$t.nii.gz temp/temp_GMpWMpWM_t$t.nii.gz
 mv temp/temp_GMpWMpWM_t$t.nii.gz ../../../relaxo/${R_TYPE}_n${n}_rf${rf}_t_$t.nii.gz
 echo "Done"
 
@@ -70,7 +70,8 @@ echo "...deleting temporary files"
 echo "Done"
 done
 
+# Deleting temporary files
 rm -R temp/
 
 echo "Relaxometry volumes were reconstructed successfully!"
-echo "--> The files with $R_TYPE_<phantom parameters> prefix contains the relaxometry volumes"
+echo "--> The files with ${R_TYPE}_<phantom parameters> prefix contains the relaxometry volumes"
