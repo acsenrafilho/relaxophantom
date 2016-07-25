@@ -1,81 +1,82 @@
-<!DOCTYPE html>
-<html lang="en-us">
+<!doctype html>
+<html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>Relaxophantom by acsenrafilho</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
   </head>
   <body>
-    <section class="page-header">
-      <h1 class="project-name">Relaxophantom</h1>
-      <h2 class="project-tagline">MRI brain relaxometry dataset creation toolkit</h2>
-      <a href="https://github.com/acsenrafilho/relaxophantom" class="btn">View on GitHub</a>
-      <a href="https://github.com/acsenrafilho/relaxophantom/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/acsenrafilho/relaxophantom/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
+    <div class="wrapper">
+      <header>
+        <h1>Relaxophantom</h1>
+        <p>MRI brain relaxometry dataset creation toolkit</p>
 
-    <section class="main-content">
-      <h1>
-<a id="relaxometry-phantom-generator" class="anchor" href="#relaxometry-phantom-generator" aria-hidden="true"><span class="octicon octicon-link"></span></a>Relaxometry Phantom Generator</h1>
+        <p class="view"><a href="https://github.com/acsenrafilho/relaxophantom">View the Project on GitHub <small>acsenrafilho/relaxophantom</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/acsenrafilho/relaxophantom/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/acsenrafilho/relaxophantom/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/acsenrafilho/relaxophantom">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="relaxometry-phantom-generator" class="anchor" href="#relaxometry-phantom-generator" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Relaxometry Phantom Generator</h1>
 
 <h2>
-<a id="description" class="anchor" href="#description" aria-hidden="true"><span class="octicon octicon-link"></span></a>Description</h2>
+<a id="description" class="anchor" href="#description" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Description</h2>
 
-<p>This software aims to reconstruct brain relaxometry for T1 and T2 phantom images. All the image processing used in this project is based on structural brain templates. </p>
+<p>This software aims to reconstruct phantom T1 and T2 MRI brain relaxometry images. All the image processing used in this project is based on structural brain templates. </p>
 
 <p>The currently available version of RelaxoPhantom toolkit is relaxophantom-v1.1.0, which provides:</p>
 
 <ul>
-<li>Relaxometry dataset for T2 and T1 images with different noise levels and RF distortions (please see the script phantom-build.sh for more details)</li>
-<li>Phantoms with 1 mm3 of spatial resolution is available</li>
-<li>Rician noise with 0%, 3% and 9% are available and Radio-frequency coil artifact with 0%, 20% and 40% are available for the phantom reconstructions</li>
+<li>T2 and T1 MRI simulation relaxometry images </li>
+<li>Phantoms with 1 mm3 of spatial resolution</li>
+<li>Rician noise with 0%, 3% and 9% and Radio-frequency coil artifact with 0%, 20% and 40%</li>
 </ul>
 
-<p>To see a simple example of the image data that is created, please download a <a href="https://github.com/acsenrafilho/relaxophantom/raw/gh-pages/images/MNI152_T2_n3_rf20_slice_0081.nii">relaxometry sample</a>. For this particular example, the slice selected is at the middle brain portion in slice 81 (MNI152). All the 180 slices in the MNI152 is reconstructed in RelaxoPhantom, given a three-dimensional brain relaxometry simulation.   </p>
+<p>To see a simple example of the image data that is created, please download a <a href="https://github.com/acsenrafilho/relaxophantom/raw/gh-pages/images/MNI152_T2_n3_rf20_slice_0081.nii">relaxometry sample</a>. In this particular example, the slice selected is at the middle brain portion in MNI152 brain template (slice 81). All the 180 slices in the MNI152 are reconstructed in RelaxoPhantom, which gives a three-dimensional brain relaxometry simulation.   </p>
 
 <h2>
-<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Requirements</h2>
+<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Requirements</h2>
 
-<p>As it is, the software needs FSL (5.0) previously installed on your machine. Please, be sure that FSL are installed and exist an environment variable called fsl5.0 in your system.</p>
+<p>As it is, the software needs FSL previously installed on your machine. Please, be sure that FSL is previously installed. To check if exist a link for FSL in your machine type</p>
 
-<p>To check if exist a link for FSL in your machine type</p>
+<p><code>whereis fsl</code></p>
 
-<p><code>whereis fsl5.0</code></p>
-
-<p>in a terminal and certificate that FSL 5.0 is already installed in your machine.</p>
-
-<p>If you do not have FSL installed, you can download it (actually, the FSL-5.0 version) directly from <a href="http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation">official FSL website</a>. To know more about FSL, see more information about it <a href="http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/">here</a>. The FSL software has a GNU license. Please check it before use it for any purposes. We do not have any responsibility for any problem or bad functioning of the code.</p>
+<p>If you do not have FSL installed, you can download it directly from <a href="http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation">official FSL website</a>. To know more about FSL, see more information about it <a href="http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/">here</a>. The FSL software and RelaxoPhantom toolkits are under GNU license. We do not have any responsibility for any problem or bad functioning of the code.</p>
 
 <h2>
-<a id="how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to use</h2>
+<a id="how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to use</h2>
 
-<p>Simply download this repository (.zip or .tar.gz compress files present on the top o this web page) and run the script <strong>phantom-build.sh</strong>. The default image parameters are placed in this main script. If you want to change the parameters in order to create a different simulated brain objects, you can change it in the header section in the <strong>phantom-build.sh</strong> file. Please, choose those parameters wisely.</p>
+<p>Simply download this repository (.zip or .tar.gz formats), extract it on a desired folder path, and run the script <strong>phantom-build</strong>. If you want to change the simulation parameters, simply change the header section in the <strong>phantom-build</strong> script file. You can edit it on any text editor, such as Notepad or Gedit. Please, choose those parameters wisely.</p>
 
-<p><strong>Note</strong>: Make sure that the <em>.sh</em> files have permission to execute. You can change the permission parameters simply typing </p>
+<p><strong>Note</strong>: Make sure that the script files have permission to execute. You can change the permission parameters simply typing in a terminal</p>
 
-<p><code>chmod a+x &lt;script file&gt;</code> </p>
-
-<p>in your terminal. This terminal command allows the program execution.</p>
+<p><code>chmod u+x &lt;script&gt;</code> </p>
 
 <h2>
-<a id="problems-bugs-and-suggestions" class="anchor" href="#problems-bugs-and-suggestions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Problems, Bugs and Suggestions</h2>
+<a id="problems-bugs-and-suggestions" class="anchor" href="#problems-bugs-and-suggestions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Problems, Bugs and Suggestions</h2>
 
 <p>This project is maintained by <a href="https://github.com/acsenrafilho" class="user-mention">@acsenrafilho</a> and if you have any problem, bug or suggestion, please contact me by my <a href="mailto:acsenrafilho@gmail.com">email address</a>. This project is freely available to download and use. </p>
 
-<p>If you want propose modification in the code, please fork it on <a href="https://github.com/acsenrafilho/relaxophantom">GitHub repository</a>!</p>
-
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/acsenrafilho/relaxophantom">Relaxophantom</a> is maintained by <a href="https://github.com/acsenrafilho">acsenrafilho</a>.</span>
-
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+<p>If you want to add any modification in the code, please fork it on <a href="https://github.com/acsenrafilho/relaxophantom">GitHub repository</a>!</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/acsenrafilho">acsenrafilho</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
       </footer>
-
-    </section>
-
-  
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
   </body>
 </html>
