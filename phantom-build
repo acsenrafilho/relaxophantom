@@ -1,15 +1,15 @@
 #!/bin/bash
 ####################################################################
 #Configuration Set:
-#--> Basic default phantom parameters
-n=3			#Noise level [0,3,9]		(default: 0)
-rf=20			#RF field distortion [0,20,40] 	(default: 0)
-GM_VALUE=80		#Gray Matter (ms) 		(default: 80)
-WM_VALUE=112		#White Matter (ms) 		(default: 112)
-CSF_VALUE=200		#CSF (ms) 			(default: 200)
-R_TYPE=T2		#Type of relaxometry [T1,T2] 	(default: T2)
-NUMBER_ECHOES=12 	#Number of echos 		(default: 12)
-TE=0.012 		#Time of echo (seconds) 	(default: 0.012)
+#--> Phantom simulation parameters
+n=3                    #Noise level [0,3,9]		           (default: 0)
+rf=20			             #RF field distortion [0,20,40] 	 (default: 0)
+GM_VALUE=80		         #Gray Matter (ms) 		             (default: 80)
+WM_VALUE=112		       #White Matter (ms) 		           (default: 112)
+CSF_VALUE=200		       #CSF (ms) 			                   (default: 200)
+R_TYPE=T2		           #Type of relaxometry [T1,T2] 	   (default: T2)
+NUMBER_ECHOES=12 	     #Number of echos 		             (default: 12)
+TE=0.012 		           #Time of echo (seconds) 	         (default: 0.012)
 #
 #--> If you want to change some parameters, please do this wisely
 ####################################################################
@@ -44,15 +44,15 @@ if [[ "`echo $OUTPUT_FOLDER`" == "" ]]; then
   echo "#############################################"
 
   echo "Step 1: Volumes segmentation"
-  ./scripts/phantom_segmentation.sh $n $rf $R_TYPE
+  ./scripts/phantom_segmentation $n $rf $R_TYPE
   echo "*** Step 1: Done ***"
 
   echo "Step 2: Phantom reconstruction"
-  ./scripts/phantom_recon.sh $n $rf $GM_VALUE $WM_VALUE $CSF_VALUE $R_TYPE $NUMBER_ECHOES $TE
+  ./scripts/phantom_recon $n $rf $GM_VALUE $WM_VALUE $CSF_VALUE $R_TYPE $NUMBER_ECHOES $TE
   echo "*** Step 2: Done ***"
 
   echo "Step 3: Reformating relaxometry volumes"
-  ./scripts/phantom_reformat.sh ${n} ${rf} ${NUMBER_ECHOES} ${R_TYPE} ${TE}
+  ./scripts/phantom_reformat ${n} ${rf} ${NUMBER_ECHOES} ${R_TYPE} ${TE}
   echo "*** Step 3: Done ***"
 
   # Removing empy relaxometry image Volumes
@@ -76,22 +76,22 @@ else
   echo "#############################################"
 
   echo "Step 1: Volumes segmentation"
-  ./scripts/phantom_segmentation.sh $n $rf $R_TYPE
+  ./scripts/phantom_segmentation $n $rf $R_TYPE
   echo "*** Step 1: Done ***"
 
   echo "Step 2: Phantom reconstruction"
-  ./scripts/phantom_recon.sh $n $rf $GM_VALUE $WM_VALUE $CSF_VALUE $R_TYPE $NUMBER_ECHOES $TE
+  ./scripts/phantom_recon $n $rf $GM_VALUE $WM_VALUE $CSF_VALUE $R_TYPE $NUMBER_ECHOES $TE
   echo "*** Step 2: Done ***"
 
   echo "Step 3: Reformating relaxometry volumes"
-  ./scripts/phantom_reformat.sh ${n} ${rf} ${NUMBER_ECHOES} ${R_TYPE} ${TE}
+  ./scripts/phantom_reformat ${n} ${rf} ${NUMBER_ECHOES} ${R_TYPE} ${TE}
   echo "*** Step 3: Done ***"
 
   #Changing output folder
   mv relaxo/ $OUTPUT_FOLDER
 
   # Removing empy relaxometry image Volumes
-  for (( vol=153; vol<=181; vol++)); do
+  for (( vol=153; vol<=180; vol++)); do
     rm `ls $OUTPUT_FOLDER/relaxo/*0${vol}*`
   done
   echo "The results are located in the folder $OUTPUT_FOLDER"

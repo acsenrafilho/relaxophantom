@@ -20,7 +20,7 @@ fslslice relaxo/${R_TYPE}_n${n}_rf${rf}_t_${t}.nii.gz relaxo/${R_TYPE}_n${n}_rf$
 done
 
 echo "Mounting relaxometry volumes"
-for ((slice=0; slice<=181; slice++))
+for ((slice=0; slice<=180; slice++))
 do
 	for ((t=1; t<=${NUMBER_ECHOES}; t++))
 	do
