@@ -22,3 +22,7 @@ More details about this repository is found in the website:
 <http://acsenrafilho.github.io/relaxophantom>
 
 # Reference 
+
+If RelaxoPhantom was useful to your study, please cite the paper:
+
+Senra Filho, A. C. da S. (2016). Volumetric T1 and T2 magnetic resonance brain toolkit for relaxometry mapping simulation. Research on Biomedical Engineering, 32(3), 301–305. http://doi.org/10.1590/2446-4740.00916
