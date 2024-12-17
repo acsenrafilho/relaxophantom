@@ -55,8 +55,8 @@ if [[ "`echo $OUTPUT_FOLDER`" == "" ]]; then
   ./scripts/phantom_reformat ${n} ${rf} ${NUMBER_ECHOES} ${R_TYPE} ${TE}
   echo "*** Step 3: Done ***"
 
-  # Removing empy relaxometry image Volumes
-  for (( vol=156; vol<=181; vol++)); do
+  # Removing empty relaxometry image Volumes
+  for (( vol=153; vol<=180; vol++)); do
     rm `ls ${PWD}/relaxo/*0${vol}*`
   done
 
@@ -90,7 +90,7 @@ else
   #Changing output folder
   mv relaxo/ $OUTPUT_FOLDER
 
-  # Removing empy relaxometry image Volumes
+  # Removing empty relaxometry image Volumes
   for (( vol=153; vol<=180; vol++)); do
     rm `ls $OUTPUT_FOLDER/relaxo/*0${vol}*`
   done
